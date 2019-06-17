@@ -41,12 +41,13 @@ You are also responsible for the look and feel of the app, so don’t forget a c
 
 # Build process
 
-1.  Set up file scaffolding
-2.  Download images
-3.  Set up coding environment (linter, readme, etc...)
-4.  Draw a wireframe of product
-5.  Set up index.html page.
-6.  Build wireframe in index.html with temporary placeholders
+1.  DONE Set up file scaffolding
+2.  DONE Download images
+3.  DONE Set up coding environment (linter, readme, etc...)
+4.  DONE Draw a wireframe of product
+5.  DONE Set up index.html page.
+6.  DONE Build wireframe in index.html with temporary placeholders
 7.  Build app.js file, testing features one at a time.
     a. Build object constructor.
-    b.
+    b. Set document entry points.
+    c. Set up state buckets. count, image holder, etc...
