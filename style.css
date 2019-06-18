@@ -69,6 +69,11 @@ main > aside > ul {
   font-size: 1.2em;
 }
 
+main > aside > ul#vote-tally > h4 {
+  margin-block-end: 0.3em ;
+  margin-block-start: 0em;
+}
+
 main > section {
 
   float: right;

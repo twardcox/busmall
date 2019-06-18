@@ -70,9 +70,21 @@ var pickNewItems = function() {
     }
   }
 
-  leftItemBucket = TestItem.allItems[indexArray[0]];
-  rightItemBucket = TestItem.allItems[indexArray[1]];
-  centerItemBucket = TestItem.allItems[indexArray[2]];
+  if (leftItemBucket !== TestItem.allItems[indexArray[0]]) {
+    leftItemBucket = TestItem.allItems[indexArray[0]];
+  } else {
+    pickNewItems();
+  }
+  if (rightItemBucket !== TestItem.allItems[indexArray[1]]) {
+    rightItemBucket = TestItem.allItems[indexArray[1]];
+  } else {
+    pickNewItems();
+  }
+  if (centerItemBucket !== TestItem.allItems[indexArray[2]]) {
+    centerItemBucket = TestItem.allItems[indexArray[2]];
+  } else {
+    pickNewItems();
+  }
 
   renderNewItems(indexArray[0], indexArray[1], indexArray[2]);
 };
@@ -131,17 +143,16 @@ var handleClickOnItem = function(event) {
 
     for (var j = 0; j < TestItem.allItems.length; j++) {
       var master = TestItem.allItems[j];
-      var content = `${master.name}: ${master.clickedCount} votes. Ratio ${master.clickedCount / master.shownCount}`;
 
-      createEl(ulId, 'li', content);
+      if (master.shownCount > 0) {
+        var content1 = `${master.name}:`;
+        var content2 = `${master.clickedCount} votes / ${master.shownCount} shows = Ratio ${Math.floor((master.clickedCount / master.shownCount) * 100)}%`;
+        createEl(ulId, 'li', content1);
+        createEl(ulId, 'h4', content2);
+      }
     }
   }
 };
-
-// this.name = name;
-//   this.url = imageSrc;
-//   this.clickedCount = 0;
-//   this.shownCount = 0;
 
 itemsImageSectionTag.addEventListener('click', handleClickOnItem);
 pickNewItems();
