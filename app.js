@@ -68,18 +68,29 @@ var pickNewItems = function() {
     if (indexArray.indexOf(newNum) === -1) {
       indexArray.push(newNum);
     }
-
-    console.log('indexArray: ', indexArray);
   }
 
   leftItemBucket = TestItem.allItems[indexArray[0]];
-  console.log('leftItemBucket = TestItem.allItems[indexArray[0]];: ', (leftItemBucket = TestItem.allItems[indexArray[0]]));
   rightItemBucket = TestItem.allItems[indexArray[1]];
-  console.log('rightItemBucket = TestItem.allItems[indexArray[1]];: ', (rightItemBucket = TestItem.allItems[indexArray[1]]));
   centerItemBucket = TestItem.allItems[indexArray[2]];
-  console.log('centerItemBucket = TestItem.allItems[indexArray[2]];: ', (centerItemBucket = TestItem.allItems[indexArray[2]]));
 
   renderNewItems(indexArray[0], indexArray[1], indexArray[2]);
+};
+
+// dynamically builds html elements
+var createEl = function(parentNode, childNode, content, childId) {
+  var newEl = document.createElement(childNode);
+
+  if (content) {
+    newEl.textContent = content;
+  }
+  if (childId) {
+    newEl.id = childId;
+  }
+
+  parentNode.append(newEl);
+
+  return newEl;
 };
 
 var handleClickOnItem = function(event) {
@@ -108,7 +119,6 @@ var handleClickOnItem = function(event) {
       //after we update the old, pick new pictures
       pickNewItems();
     }
-    console.log(event.target.id);
   }
 
   // increment amount of clicks
@@ -116,8 +126,22 @@ var handleClickOnItem = function(event) {
   //when they reach total max clicks, remove the clicky function
   if (totalClicks === 25) {
     itemsImageSectionTag.removeEventListener('click', handleClickOnItem);
+
+    var ulId = document.getElementById('vote-tally');
+
+    for (var j = 0; j < TestItem.allItems.length; j++) {
+      var master = TestItem.allItems[j];
+      var content = `${master.name}: ${master.clickedCount} votes. Ratio ${master.clickedCount / master.shownCount}`;
+
+      createEl(ulId, 'li', content);
+    }
   }
 };
+
+// this.name = name;
+//   this.url = imageSrc;
+//   this.clickedCount = 0;
+//   this.shownCount = 0;
 
 itemsImageSectionTag.addEventListener('click', handleClickOnItem);
 pickNewItems();
