@@ -97,7 +97,7 @@ main > section > ul > li > article {
 
 main > section > ul > li > article >img {
   width: 20vw;
-  height: auto;
+  height: 30vh;
 }
 
 main > section > ul > li > article> h3 {
