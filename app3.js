@@ -68,41 +68,18 @@ var pickNewItems = function() {
     if (indexArray.indexOf(newNum) === -1) {
       indexArray.push(newNum);
     }
+
+    console.log('indexArray: ', indexArray);
   }
 
-  if (leftItemBucket !== TestItem.allItems[indexArray[0]]) {
-    leftItemBucket = TestItem.allItems[indexArray[0]];
-  } else {
-    pickNewItems();
-  }
-  if (rightItemBucket !== TestItem.allItems[indexArray[1]]) {
-    rightItemBucket = TestItem.allItems[indexArray[1]];
-  } else {
-    pickNewItems();
-  }
-  if (centerItemBucket !== TestItem.allItems[indexArray[2]]) {
-    centerItemBucket = TestItem.allItems[indexArray[2]];
-  } else {
-    pickNewItems();
-  }
+  leftItemBucket = TestItem.allItems[indexArray[0]];
+  console.log('leftItemBucket = TestItem.allItems[indexArray[0]];: ', (leftItemBucket = TestItem.allItems[indexArray[0]]));
+  rightItemBucket = TestItem.allItems[indexArray[1]];
+  console.log('rightItemBucket = TestItem.allItems[indexArray[1]];: ', (rightItemBucket = TestItem.allItems[indexArray[1]]));
+  centerItemBucket = TestItem.allItems[indexArray[2]];
+  console.log('centerItemBucket = TestItem.allItems[indexArray[2]];: ', (centerItemBucket = TestItem.allItems[indexArray[2]]));
 
   renderNewItems(indexArray[0], indexArray[1], indexArray[2]);
-};
-
-// dynamically builds html elements
-var createEl = function(parentNode, childNode, content, childId) {
-  var newEl = document.createElement(childNode);
-
-  if (content) {
-    newEl.textContent = content;
-  }
-  if (childId) {
-    newEl.id = childId;
-  }
-
-  parentNode.append(newEl);
-
-  return newEl;
 };
 
 var handleClickOnItem = function(event) {
@@ -131,6 +108,7 @@ var handleClickOnItem = function(event) {
       //after we update the old, pick new pictures
       pickNewItems();
     }
+    console.log(event.target.id);
   }
 
   // increment amount of clicks
@@ -138,104 +116,8 @@ var handleClickOnItem = function(event) {
   //when they reach total max clicks, remove the clicky function
   if (totalClicks === 25) {
     itemsImageSectionTag.removeEventListener('click', handleClickOnItem);
-
-    makeBusChart();
   }
 };
 
 itemsImageSectionTag.addEventListener('click', handleClickOnItem);
-
 pickNewItems();
-
-// Chart
-
-function makeBusChart() {
-  var busChartCanvas = document.getElementById('busResults');
-
-  var percents = [];
-  var names = [];
-
-  for (var i = 0; i < TestItem.allItems.length; i++) {
-    if (TestItem.allItems[i].shownCount > 0) {
-      var p = Math.floor((TestItem.allItems[i].clickedCount / TestItem.allItems[i].shownCount) * 100);
-      names.push(TestItem.allItems[i].name);
-      percents.push(p);
-    }
-  }
-
-  var chartData = {
-    labels: names,
-    datasets: [
-      {
-        label: '% of Votes',
-        data: percents,
-        backgroundColor: [
-          'rgba(255, 99, 132, .4)',
-          'rgba(54, 162, 235, 0.2)',
-          'rgba(255, 206, 86, 0.2)',
-          'rgba(75, 192, 192, 0.2)',
-          'rgba(153, 102, 255, 0.2)',
-          'rgba(255, 159, 64, 0.2)',
-          'rgba(255, 99, 132, .4)',
-          'rgba(54, 162, 235, 0.2)',
-          'rgba(255, 206, 86, 0.2)',
-          'rgba(75, 192, 192, 0.2)',
-          'rgba(153, 102, 255, 0.2)',
-          'rgba(255, 159, 64, 0.2)',
-          'rgba(255, 99, 132, .4)',
-          'rgba(54, 162, 235, 0.2)',
-          'rgba(255, 206, 86, 0.2)',
-          'rgba(75, 192, 192, 0.2)',
-          'rgba(153, 102, 255, 0.2)',
-          'rgba(255, 159, 64, 0.2)',
-          'rgba(255, 99, 132, .4)',
-          'rgba(54, 162, 235, 0.2)',
-          'rgba(255, 206, 86, 0.2)',
-          'rgba(75, 192, 192, 0.2)'
-        ],
-        borderColor: [
-          'rgba(255, 99, 132, 1)',
-          'rgba(54, 162, 235, 1)',
-          'rgba(255, 206, 86, 1)',
-          'rgba(75, 192, 192, 1)',
-          'rgba(153, 102, 255, 1)',
-          'rgba(255, 159, 64, 1)',
-          'rgba(255, 99, 132, 1)',
-          'rgba(54, 162, 235, 1)',
-          'rgba(255, 206, 86, 1)',
-          'rgba(75, 192, 192, 1)',
-          'rgba(153, 102, 255, 1)',
-          'rgba(255, 159, 64, 1)',
-          'rgba(255, 99, 132, 1)',
-          'rgba(54, 162, 235, 1)',
-          'rgba(255, 206, 86, 1)',
-          'rgba(75, 192, 192, 1)',
-          'rgba(153, 102, 255, 1)',
-          'rgba(255, 159, 64, 1)',
-          'rgba(255, 99, 132, 1)',
-          'rgba(54, 162, 235, 1)',
-          'rgba(255, 206, 86, 1)',
-          'rgba(75, 192, 192, 1)'
-        ],
-        borderWidth: 1
-      }
-    ]
-  };
-
-  var busChartObject = {
-    type: 'bar',
-    data: chartData,
-    options: {
-      scales: {
-        yAxes: [
-          {
-            ticks: {
-              beginAtZero: true
-            }
-          }
-        ]
-      }
-    }
-  };
-  var busChart = new Chart(busChartCanvas, busChartObject);
-}

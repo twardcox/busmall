@@ -53,28 +53,10 @@ main {
   margin: auto;
 }
 
-main > aside {
-  float: left;
-  width: 20vw;
-  height: auto;
-}
-
-main > aside > h2 {
-  text-align: center;
-}
-
-main > aside > ul {
-  font-size: 1.2em;
-}
-
-main > aside > ul#vote-tally > h4 {
-  margin-block-end: 0.3em;
-  margin-block-start: 0em;
-}
-
 main > section {
-  float: right;
-  width: 84vw;
+  align-content: center;
+  width: 73vw;
+  margin: auto;
 }
 
 main > section > h2 {
@@ -107,22 +89,14 @@ main > section > ul > li > article > h3 {
   width: 20vw;
 }
 
-footer {
-  text-align: center;
-  font-size: 0.8em;
-  position: absolute;
-  top: 119vh;
-  right: 32vw;
-}
-
 section#results-chart {
   width: 150vw;
   margin: auto;
 }
 
 #busResults {
-    display: block;
-    width: 1033px;
-    height: 621px;
-    margin: auto
+  display: block;
+  width: 1033px;
+  height: 621px;
+  margin: auto;
 }
