@@ -54,7 +54,6 @@ main {
 }
 
 main > section {
-
   align-content: center;
   width: 73vw;
   margin: auto;
@@ -68,8 +67,6 @@ main > section > h2 {
 
 main > section > ul {
   padding: 0 40px 0 40px;
-  margin-left: 11vw;
-
 }
 main > section > ul > li {
   display: inline;
@@ -92,14 +89,8 @@ main > section > ul > li > article > h3 {
   width: 20vw;
 }
 
-section#results-chart {
-  width: 150vw;
+section#results {
+  width: 57vw;
   margin: auto;
-}
-
-#busResults {
-  display: block;
-  width: 1033px;
-  height: 621px;
-  margin: auto;
+  height: 240px;
 }

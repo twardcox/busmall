@@ -118,7 +118,7 @@ var handleClickOnItem = function(event) {
   }
 
   // increment amount of clicks
-  totalClick++
+  totalClicks++
   
   //when they reach total max clicks, remove the clicky function
   if (totalClicks === 25) {
