@@ -32,6 +32,23 @@ new TestItem('Dark Lords Messenger App', './img/usb.gif');
 new TestItem('Self Watering Can', './img/water-can.jpg');
 new TestItem('Wine Sniffer', './img/wine-glass.jpg');
 
+// Get local storage data if populated
+for (var j = 0; j < TestItem.allItems.length; j++) {
+  // get name to pull from local storage
+  var newName = `${TestItem.allItems[j].name}`;
+
+  var useTestItem = {};
+  // pull named item from local storage if exists
+  if (JSON.parse(localStorage.getItem(newName))) {
+    useTestItem = JSON.parse(localStorage.getItem(newName));
+  }
+
+  if (useTestItem.shownCount > 0) {
+    // replace new object with object from local storage
+    TestItem.allItems.splice(j, 1, useTestItem);
+  }
+}
+
 // Get document entry points
 var itemsImageSectionTag = document.getElementById('allItems');
 var leftItemImageTag = document.getElementById('leftItemImg');
@@ -39,7 +56,9 @@ var rightItemImageTag = document.getElementById('rightItemImg');
 var centerItemImageTag = document.getElementById('centerItemImg');
 
 // holds total number of clicked items
-var totalClicks = 0;
+// uses local storage clicks if > 0
+var storedClicks = JSON.parse(localStorage.getItem('totalClicks'));
+var totalClicks = storedClicks >= 25 ? 0 : storedClicks;
 
 // holds current items
 var rightItemBucket = null;
@@ -98,19 +117,24 @@ var handleClickOnItem = function(event) {
     if (id === 'leftItemImg' || id === 'centerItemImg' || id === 'rightItemImg') {
       if (id === 'leftItemImg') {
         leftItemBucket.clickedCount++;
+        localStorage.setItem(leftItemBucket.name, JSON.stringify(leftItemBucket));
       }
 
       if (id === 'centerItemImg') {
         rightItemBucket.clickedCount++;
+        localStorage.setItem(rightItemBucket.name, JSON.stringify(rightItemBucket));
       }
 
       if (id === 'rightItemImg') {
         centerItemBucket.clickedCount++;
+        localStorage.setItem(centerItemBucket.name, JSON.stringify(centerItemBucket));
       }
 
       leftItemBucket.shownCount++;
       rightItemBucket.shownCount++;
       centerItemBucket.shownCount++;
+
+      // after click update local storage
 
       //after we update the old, pick new pictures
       pickNewItems();
@@ -118,8 +142,11 @@ var handleClickOnItem = function(event) {
   }
 
   // increment amount of clicks
-  totalClick++
-  
+  totalClicks++;
+
+  // modify totalClicks in local storage
+  localStorage.setItem('totalClicks', JSON.stringify(totalClicks));
+
   //when they reach total max clicks, remove the clicky function
   if (totalClicks === 25) {
     itemsImageSectionTag.removeEventListener('click', handleClickOnItem);
@@ -142,6 +169,7 @@ function makeBusChart() {
 
   for (var i = 0; i < TestItem.allItems.length; i++) {
     if (TestItem.allItems[i].shownCount > 0) {
+      // performs calculations for table.
       var p = Math.floor((TestItem.allItems[i].clickedCount / TestItem.allItems[i].shownCount) * 100);
       names.push(TestItem.allItems[i].name);
       percents.push(p);
@@ -206,7 +234,6 @@ function makeBusChart() {
         borderWidth: 1
       }
     ]
-
   };
 
   var busChartObject = {
@@ -217,14 +244,12 @@ function makeBusChart() {
         yAxes: [
           {
             ticks: {
-
               beginAtZero: true
             }
           }
         ]
       }
     }
-
   };
   var busChart = new Chart(busChartCanvas, busChartObject);
 }
