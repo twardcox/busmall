@@ -142,6 +142,7 @@ var handleClickOnItem = function(event) {
   }
 
   // increment amount of clicks
+
   totalClicks++;
 
   // modify totalClicks in local storage

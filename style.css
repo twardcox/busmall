@@ -88,3 +88,8 @@ main > section > ul > li > article > h3 {
   width: 20vw;
 }
 
+section#results {
+  width: 57vw;
+  margin: auto;
+  height: 240px;
+}
