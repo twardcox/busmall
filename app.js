@@ -68,10 +68,13 @@ var centerItemBucket = null;
 // render items sets the src attribute
 var renderNewItems = function(leftIndex, rightIndex, centerIndex) {
   leftItemImageTag.src = TestItem.allItems[leftIndex].url;
+  document.getElementById('leftLabel').textContent = `${TestItem.allItems[leftIndex].name}`;
 
   rightItemImageTag.src = TestItem.allItems[rightIndex].url;
+  document.getElementById('rightLabel').textContent = `${TestItem.allItems[rightIndex].name}`;
 
   centerItemImageTag.src = TestItem.allItems[centerIndex].url;
+  document.getElementById('centerLabel').textContent = `${TestItem.allItems[centerIndex].name}`;
 };
 
 // generate a random number
