@@ -53,28 +53,10 @@ main {
   margin: auto;
 }
 
-main > aside {
-  float: left;
-  width: 20vw;
-  height: auto;
-}
-
-main > aside > h2 {
-  text-align: center;
-}
-
-main > aside > ul {
-  font-size: 1.2em;
-}
-
-main > aside > ul#vote-tally > h4 {
-  margin-block-end: 0.3em;
-  margin-block-start: 0em;
-}
-
 main > section {
-  float: right;
+  /* align-content: center; */
   width: 84vw;
+  margin: auto;
 }
 
 main > section > h2 {
@@ -85,6 +67,7 @@ main > section > h2 {
 
 main > section > ul {
   padding: 0 40px 0 40px;
+  margin-left: 11vw;
 }
 main > section > ul > li {
   display: inline;
