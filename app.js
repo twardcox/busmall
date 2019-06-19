@@ -89,22 +89,6 @@ var pickNewItems = function() {
   renderNewItems(indexArray[0], indexArray[1], indexArray[2]);
 };
 
-// dynamically builds html elements
-var createEl = function(parentNode, childNode, content, childId) {
-  var newEl = document.createElement(childNode);
-
-  if (content) {
-    newEl.textContent = content;
-  }
-  if (childId) {
-    newEl.id = childId;
-  }
-
-  parentNode.append(newEl);
-
-  return newEl;
-};
-
 var handleClickOnItem = function(event) {
   // if they can still click, do clicky things
   if (totalClicks < 25) {
@@ -134,7 +118,8 @@ var handleClickOnItem = function(event) {
   }
 
   // increment amount of clicks
-  totalClicks++;
+  totalClick++
+  
   //when they reach total max clicks, remove the clicky function
   if (totalClicks === 25) {
     itemsImageSectionTag.removeEventListener('click', handleClickOnItem);
@@ -217,9 +202,11 @@ function makeBusChart() {
           'rgba(255, 206, 86, 1)',
           'rgba(75, 192, 192, 1)'
         ],
+
         borderWidth: 1
       }
     ]
+
   };
 
   var busChartObject = {
@@ -230,12 +217,14 @@ function makeBusChart() {
         yAxes: [
           {
             ticks: {
+
               beginAtZero: true
             }
           }
         ]
       }
     }
+
   };
   var busChart = new Chart(busChartCanvas, busChartObject);
 }

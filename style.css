@@ -54,6 +54,7 @@ main {
 }
 
 main > section {
+
   align-content: center;
   width: 73vw;
   margin: auto;
@@ -67,6 +68,8 @@ main > section > h2 {
 
 main > section > ul {
   padding: 0 40px 0 40px;
+  margin-left: 11vw;
+
 }
 main > section > ul > li {
   display: inline;
