@@ -48,14 +48,13 @@ header > nav > ul > li {
 }
 
 main {
-  height: 60vh;
+  height: 150vh;
   width: 100%;
   margin: auto;
 }
 
 main > section {
-  align-content: center;
-  width: 73vw;
+  width: 70vw;
   margin: auto;
 }
 
