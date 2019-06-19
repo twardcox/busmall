@@ -54,8 +54,9 @@ main {
 }
 
 main > section {
-  /* align-content: center; */
-  width: 84vw;
+
+  align-content: center;
+  width: 73vw;
   margin: auto;
 }
 
@@ -68,6 +69,7 @@ main > section > h2 {
 main > section > ul {
   padding: 0 40px 0 40px;
   margin-left: 11vw;
+
 }
 main > section > ul > li {
   display: inline;
@@ -88,14 +90,6 @@ main > section > ul > li > article > h3 {
   text-align: center;
   margin: 0px;
   width: 20vw;
-}
-
-footer {
-  text-align: center;
-  font-size: 0.8em;
-  position: absolute;
-  top: 119vh;
-  right: 32vw;
 }
 
 section#results-chart {

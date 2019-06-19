@@ -118,8 +118,8 @@ var handleClickOnItem = function(event) {
   }
 
   // increment amount of clicks
-  totalClicks++;
-
+  totalClick++
+  
   //when they reach total max clicks, remove the clicky function
   if (totalClicks === 25) {
     itemsImageSectionTag.removeEventListener('click', handleClickOnItem);
@@ -202,9 +202,11 @@ function makeBusChart() {
           'rgba(255, 206, 86, 1)',
           'rgba(75, 192, 192, 1)'
         ],
-        borderWidth: 1,
+
+        borderWidth: 1
       }
-    ],
+    ]
+
   };
 
   var busChartObject = {
@@ -215,12 +217,14 @@ function makeBusChart() {
         yAxes: [
           {
             ticks: {
-              beginAtZero: true,
-            },
+
+              beginAtZero: true
+            }
           }
-        ],
-      },
-    },
+        ]
+      }
+    }
+
   };
   var busChart = new Chart(busChartCanvas, busChartObject);
 }
