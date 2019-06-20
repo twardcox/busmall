@@ -1,3 +1,4 @@
+
 'use strict';
 
 // Build Object Constructor
@@ -92,22 +93,19 @@ var pickNewItems = function() {
     }
   }
 
-  if (leftItemBucket !== TestItem.allItems[indexArray[0]]) {
-    leftItemBucket = TestItem.allItems[indexArray[0]];
-  } else {
-    pickNewItems();
-  }
-  if (rightItemBucket !== TestItem.allItems[indexArray[1]]) {
-    rightItemBucket = TestItem.allItems[indexArray[1]];
-  } else {
-    pickNewItems();
-  }
-  if (centerItemBucket !== TestItem.allItems[indexArray[2]]) {
-    centerItemBucket = TestItem.allItems[indexArray[2]];
-  } else {
-    pickNewItems();
+  // TODO: check all of them
+  // TODO: prevent overwrite
+
+  for (var k = 0; k < 3; k++) {
+    if (leftItemBucket === TestItem.allItems[indexArray[k]] || rightItemBucket === TestItem.allItems[indexArray[k]] || centerItemBucket === TestItem.allItems[indexArray[k]]) {
+      pickNewItems();
+      return;
+    }
   }
 
+  centerItemBucket = TestItem.allItems[indexArray[2]];
+  rightItemBucket = TestItem.allItems[indexArray[1]];
+  leftItemBucket = TestItem.allItems[indexArray[0]];
   renderNewItems(indexArray[0], indexArray[1], indexArray[2]);
 };
 
